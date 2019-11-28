@@ -18,7 +18,7 @@ public class Alphabet extends JFrame {
 
 		// A~Z label 랜덤한 위치에 생성
 		Random r = new Random();
-		char alpha = 65;
+		char alpha = 65; // `A`
 		for(int i = 0; i < 26; i++) {
 			txt[i] = new JLabel(String.valueOf(alpha++));
 			txt[i].setLocation(r.nextInt(460) + 10, r.nextInt(400) + 50);
@@ -47,7 +47,7 @@ public class Alphabet extends JFrame {
 			JLabel l = (JLabel)e.getSource();
 
 			// 현재 클릭된 label과 next번째 label이 같을 경우 visible을 false로 설정
-			if(e.getSource() == txt[next]) {
+			if(l == txt[next]) {
 				txt[next++].setVisible(false);
 				hint.setText("You clicked \"" + l.getText() + "\"");
 				if(next >= 26) {
@@ -57,8 +57,8 @@ public class Alphabet extends JFrame {
 			}
 			// 다른 경우 클릭된 label과 클릭해야할 label의 위치값을 받아 상대적 위치 출력
 			else {
-				Point clicked = l.getLocation();
-				Point target = txt[next].getLocation();
+				Point clicked = l.getLocation();			// 클릭한 txt 좌표
+				Point target = txt[next].getLocation();		// 클릭해야 할 txt 좌표
 				int x = target.x - clicked.x;
 				int y = target.y - clicked.y;
 
