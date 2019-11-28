@@ -6,11 +6,11 @@ import java.awt.event.*;
 import java.util.*;
 
 public class Alphabet extends JFrame {
-	JLabel[] txt = new JLabel[26];
-	JLabel hint = new JLabel("Let's play!");
+	JLabel[] txt = new JLabel[26]; // a~z의 단어 출력을 위한 label
+	JLabel hint = new JLabel("Let's play!"); // 도움말 출력을 위한 label
 	Random r = new Random();
-
-	int check = 0;
+	
+	int check = 0; // 삭제한 label의 개수를 세기 위한 변수
 	
 	public Alphabet() {
 		setTitle("2016112661 김현우");
@@ -18,6 +18,7 @@ public class Alphabet extends JFrame {
 		Container c = getContentPane();
 		c.setLayout(null);
 		
+		// 'a'부터 랜덤한 위치에 label 생성
 		char alpha = 65;
 		for(int i = 0; i < 26; i++) {
 			txt[i] = new JLabel(String.valueOf(alpha++));
@@ -39,6 +40,8 @@ public class Alphabet extends JFrame {
 	public class txtClick extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
 			JLabel l = (JLabel)e.getSource();
+			
+			// 현재 클릭된 label과 check번째 label이 같을 경우 visible을 false로 설정
 			if(e.getSource() == txt[check]) {
 				txt[check++].setVisible(false);
 				hint.setText("You clicked \"" + l.getText() + "\"");
@@ -46,6 +49,7 @@ public class Alphabet extends JFrame {
 					hint.setText("Good Job!");
 				}
 			}
+			// 다른 경우 클릭된 label과 클릭해야할 label의 위치값을 받아 상대적 위치 출력
 			else {
 				Point clicked = l.getLocation();
 				Point target = txt[check].getLocation();
